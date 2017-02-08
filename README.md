@@ -2,6 +2,12 @@
 
   I am a copier, I copy everything from one to another
 
+## Changes
+
+This module is based on https://github.com/jinzhu/copier
+
+The only change I made - changed order of arguments to: **source, destination** as I find it more intuitive.
+
 ## Features
 
 * Copy from field to field with same name
@@ -17,7 +23,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/jinzhu/copier"
+	"github.com/Beh01der/copier"
 )
 
 type User struct {
@@ -50,7 +56,7 @@ func main() {
 		employees = []Employee{}
 	)
 
-	copier.Copy(&employee, &user)
+	copier.Copy(&user, &employee)
 
 	fmt.Printf("%#v \n", employee)
 	// Employee{
@@ -62,7 +68,7 @@ func main() {
 	// }
 
 	// Copy struct to slice
-	copier.Copy(&employees, &user)
+	copier.Copy(&user, &employees)
 
 	fmt.Printf("%#v \n", employees)
 	// []Employee{
@@ -71,7 +77,7 @@ func main() {
 
 	// Copy slice to slice
 	employees = []Employee{}
-	copier.Copy(&employees, &users)
+	copier.Copy(&users, &employees)
 
 	fmt.Printf("%#v \n", employees)
 	// []Employee{
@@ -80,19 +86,3 @@ func main() {
 	// }
 }
 ```
-
-# Supporting the project
-
-[![http://patreon.com/jinzhu](http://patreon_public_assets.s3.amazonaws.com/sized/becomeAPatronBanner.png)](http://patreon.com/jinzhu)
-
-# Author
-
-**jinzhu**
-
-* <http://github.com/jinzhu>
-* <wosmvp@gmail.com>
-* <http://twitter.com/zhangjinzhu>
-
-## License
-
-Released under the [MIT License](https://github.com/jinzhu/copier/blob/master/License).

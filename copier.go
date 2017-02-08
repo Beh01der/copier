@@ -7,7 +7,7 @@ import (
 )
 
 // Copy copy things
-func Copy(toValue interface{}, fromValue interface{}) (err error) {
+func Copy(fromValue interface{}, toValue interface{}) (err error) {
 	var (
 		isSlice bool
 		amount  = 1
@@ -67,7 +67,7 @@ func Copy(toValue interface{}, fromValue interface{}) (err error) {
 				if toField := dest.FieldByName(name); toField.IsValid() {
 					if toField.CanSet() {
 						if !set(toField, fromField) {
-							if err := Copy(toField.Addr().Interface(), fromField.Interface()); err != nil {
+							if err := Copy(fromField.Interface(), toField.Addr().Interface()); err != nil {
 								return err
 							}
 						}
